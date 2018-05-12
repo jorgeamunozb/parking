@@ -18,7 +18,7 @@ public class ParkingService {
     @Autowired
     private ICarRepository carRepository;
 
-    public ßßvoid saveMotorcycle(String plate, Integer displacement) {
+    public void saveMotorcycle(String plate, Integer displacement) {
         if (StringUtils.isNotBlank(plate) && displacement > 0) {
             Motorcycle motorcycle = new Motorcycle(plate, displacement, new Date());
             motorcycleRepository.save(motorcycle);

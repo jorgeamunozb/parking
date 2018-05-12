@@ -48,4 +48,55 @@ public class ParkingServiceTest {
         Assert.assertEquals(motorcycleList.get(0).getPlate(), plate);
     }
 
+    @Test
+    public void saveMotorcyclePlateEmptyTest() {
+        //Arrange
+        String plate = " ";
+        Integer displacement = 150;
+
+        //Act
+        doAnswer(Answers.CALLS_REAL_METHODS).when(mock(ParkingService.class)).saveMotorcycle(anyString(), anyInt());
+        parkingService.saveMotorcycle(plate, displacement);
+
+        when(parkingService.getMotorcycles()).thenReturn(Collections.emptyList());
+        List<Motorcycle> motorcycleList = parkingService.getMotorcycles();
+
+        //Assert
+        Assert.assertTrue(motorcycleList.isEmpty());
+    }
+
+    @Test
+    public void saveMotorcyclePlateNullTest() {
+        //Arrange
+        String plate = null;
+        Integer displacement = 150;
+
+        //Act
+        doAnswer(Answers.CALLS_REAL_METHODS).when(mock(ParkingService.class)).saveMotorcycle(anyString(), anyInt());
+        parkingService.saveMotorcycle(plate, displacement);
+
+        when(parkingService.getMotorcycles()).thenReturn(Collections.emptyList());
+        List<Motorcycle> motorcycleList = parkingService.getMotorcycles();
+
+        //Assert
+        Assert.assertTrue(motorcycleList.isEmpty());
+    }
+
+    @Test
+    public void saveMotorcycleDisplacementZeroTest() {
+        //Arrange
+        String plate = "XYZ123";
+        Integer displacement = 0;
+
+        //Act
+        doAnswer(Answers.CALLS_REAL_METHODS).when(mock(ParkingService.class)).saveMotorcycle(anyString(), anyInt());
+        parkingService.saveMotorcycle(plate, displacement);
+
+        when(parkingService.getMotorcycles()).thenReturn(Collections.emptyList());
+        List<Motorcycle> motorcycleList = parkingService.getMotorcycles();
+
+        //Assert
+        Assert.assertTrue(motorcycleList.isEmpty());
+    }
+
 }
